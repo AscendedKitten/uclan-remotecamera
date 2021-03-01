@@ -1,0 +1,10 @@
+com/uclan/remotecamera/androidApp/databinding/FragmentWifiBinding.java
+ com.uclan.remotecamera.androidApp.databinding.FragmentWifiBinding
+com/uclan/remotecamera/androidApp/databinding/RecyclerViewItemBinding.java
+ com.uclan.remotecamera.androidApp.databinding.RecyclerViewItemBinding
+com/uclan/remotecamera/androidApp/databinding/ActivityMainBinding.java
+ com.uclan.remotecamera.androidApp.databinding.ActivityMainBinding
+com/uclan/remotecamera/androidApp/BuildConfig.java
+ com.uclan.remotecamera.androidApp.BuildConfig
+com/uclan/remotecamera/androidApp/DataBindingTriggerClass.java
+ com.uclan.remotecamera.androidApp.DataBindingTriggerClass

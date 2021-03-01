@@ -1,0 +1,275 @@
+-- Merging decision tree log ---
+manifest
+ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:2:1-48:12
+INJECTED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:2:1-48:12
+INJECTED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:2:1-48:12
+INJECTED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:2:1-48:12
+MERGED from [androidx.databinding:databinding-adapters:4.2.0-beta04] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\8a6dbdebe9f44da5478a3b2db3c18837\databinding-adapters-4.2.0-beta04\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.databinding:databinding-runtime:4.2.0-beta04] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\c5a859dc1b9c34c93accbf892fc9977d\databinding-runtime-4.2.0-beta04\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.databinding:viewbinding:4.2.0-beta04] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\cc3602d7dde90708567117c316aa4a56\viewbinding-4.2.0-beta04\AndroidManifest.xml:17:1-22:12
+MERGED from [:shared] D:\UCLAN\RemoteCamera\shared\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\e7ebd28a792be85a61b9ada171f4f94b\lifecycle-viewmodel-ktx-2.3.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-ktx:2.3.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\28284aea1ddd41c78f40dc21a6b1039f\lifecycle-livedata-ktx-2.3.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.3.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\06eababa483c7c8bdf0d4424bffcae4c\lifecycle-livedata-core-ktx-2.3.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.material:material:1.3.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\32c10f231d1c8b782e7356b932b4d26d\material-1.3.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.4] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\0bd77111d3c30ea8695f6ccac3e14b4f\constraintlayout-2.0.4\AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.appcompat:appcompat:1.2.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\2366a3235455611d3aaea444c5984dee\appcompat-1.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [:libbambuser] D:\UCLAN\RemoteCamera\libbambuser\build\.transforms\78ceb4b007eff234831519b6c5d2d39e\libbambuser-0.9.22\AndroidManifest.xml:2:1-34:12
+MERGED from [com.github.ar-android:libstreaming:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\aa43bf523f150d1894674aaa5b8a321e\libstreaming-1.0.0\AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\663e5d969f9432e67d63451f51089b20\coordinatorlayout-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\20a3e1928fcb5d49e42a0d05ca8749ab\dynamicanimation-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.transition:transition:1.2.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\bf841b396dd94deb1c6475e591c3afe4\transition-1.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat-resources:1.2.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\2335cd2b67a78f534d0319f439fffe88\appcompat-resources-1.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\49fe335d44e1fc68d8fe1e572ce76583\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\80888532ec7145d028a44161babaf421\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\875b42b5cbc71197899b600244aa8781\viewpager2-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\7eb0ab270ebe95026cbeed889a62c0b3\fragment-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\c63c3aa013d2d9c5a1ce2c47b1a0f22c\drawerlayout-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\71a86c63f298d63bea8b108bd8e4753f\recyclerview-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\96cb9dfcf8b83888efa94737b0d85112\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\3bae9c5e4b0e232c86a8519e37396eaf\customview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\bd285099d6061d75c56fe99dbe99689a\legacy-support-core-utils-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\75675e9f0b942d37e84b1f6dbb52db08\loader-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\6ac09b2367c4bf46541bbc1f4f3c28dd\activity-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core:1.3.1] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\bdec7c7a161f8b791677dc033bf597a6\core-1.3.1\AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\b49d918492960039bd184c743538f3a9\lifecycle-runtime-2.3.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\16de15efe8904ea527ce360c97a6ff71\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\958f09778864289e9fd9a4850f015bd5\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.3.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\675f323312fa9b6cac4ad057cd99c3d9\lifecycle-livedata-2.3.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\a239e113e0620b64d2ffb3a84187e831\lifecycle-livedata-core-2.3.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\63cabac45f10b0bd314aa5ae4efa35a0\core-runtime-2.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\905c334550282324987960eaa0f9c14e\savedstate-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\89a0c91b30b3edeb6407fc307b2f8088\lifecycle-viewmodel-2.3.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\c34a6eb0beeb1ff76a0cd1b61a1a7282\versionedparcelable-1.1.0\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\2c908a8871d4b02bef6bb8953c565797\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\976122fdca0657c8af91e224a12164a9\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\f96818f6269ca9fda4118eaeae63f2ec\print-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\6eb72c911e2ddabaeb778eb9e7002ffa\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\c8f141b8532f1cd3e44b527c924a6166\annotation-experimental-1.0.0\AndroidManifest.xml:17:1-24:12
+INJECTED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:2:1-48:12
+INJECTED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:2:1-48:12
+INJECTED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:2:1-48:12
+	package
+		ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:3:5-48
+		INJECTED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml
+		INJECTED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml
+		ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:2:1-48:12
+		INJECTED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml
+		ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:2:1-48:12
+		INJECTED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:5:5-7:35
+	android:required
+		ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:7:9-32
+	android:name
+		ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:6:9-63
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:8:5-10:35
+	android:required
+		ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:10:9-32
+	android:name
+		ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:9:9-60
+uses-permission#android.permission.CHANGE_WIFI_STATE
+ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:11:5-13:35
+	android:required
+		ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:13:9-32
+	android:name
+		ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:12:9-60
+uses-permission#android.permission.INTERNET
+ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:14:5-16:35
+MERGED from [:libbambuser] D:\UCLAN\RemoteCamera\libbambuser\build\.transforms\78ceb4b007eff234831519b6c5d2d39e\libbambuser-0.9.22\AndroidManifest.xml:13:5-67
+MERGED from [:libbambuser] D:\UCLAN\RemoteCamera\libbambuser\build\.transforms\78ceb4b007eff234831519b6c5d2d39e\libbambuser-0.9.22\AndroidManifest.xml:13:5-67
+	android:required
+		ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:16:9-32
+	android:name
+		ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:15:9-51
+uses-feature#android.hardware.camera.any
+ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:18:5-20:35
+MERGED from [:libbambuser] D:\UCLAN\RemoteCamera\libbambuser\build\.transforms\78ceb4b007eff234831519b6c5d2d39e\libbambuser-0.9.22\AndroidManifest.xml:15:5-17:35
+MERGED from [:libbambuser] D:\UCLAN\RemoteCamera\libbambuser\build\.transforms\78ceb4b007eff234831519b6c5d2d39e\libbambuser-0.9.22\AndroidManifest.xml:15:5-17:35
+	android:required
+		ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:20:9-32
+	android:name
+		ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:19:9-51
+uses-feature#android.hardware.camera
+ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:21:5-23:36
+MERGED from [:libbambuser] D:\UCLAN\RemoteCamera\libbambuser\build\.transforms\78ceb4b007eff234831519b6c5d2d39e\libbambuser-0.9.22\AndroidManifest.xml:18:5-20:36
+MERGED from [:libbambuser] D:\UCLAN\RemoteCamera\libbambuser\build\.transforms\78ceb4b007eff234831519b6c5d2d39e\libbambuser-0.9.22\AndroidManifest.xml:18:5-20:36
+	android:required
+		ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:23:9-33
+	android:name
+		ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:22:9-47
+uses-feature#android.hardware.camera.autofocus
+ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:24:5-26:36
+MERGED from [:libbambuser] D:\UCLAN\RemoteCamera\libbambuser\build\.transforms\78ceb4b007eff234831519b6c5d2d39e\libbambuser-0.9.22\AndroidManifest.xml:21:5-23:36
+MERGED from [:libbambuser] D:\UCLAN\RemoteCamera\libbambuser\build\.transforms\78ceb4b007eff234831519b6c5d2d39e\libbambuser-0.9.22\AndroidManifest.xml:21:5-23:36
+	android:required
+		ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:26:9-33
+	android:name
+		ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:25:9-57
+uses-feature#android.hardware.camera.flash
+ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:27:5-29:36
+MERGED from [:libbambuser] D:\UCLAN\RemoteCamera\libbambuser\build\.transforms\78ceb4b007eff234831519b6c5d2d39e\libbambuser-0.9.22\AndroidManifest.xml:24:5-26:36
+MERGED from [:libbambuser] D:\UCLAN\RemoteCamera\libbambuser\build\.transforms\78ceb4b007eff234831519b6c5d2d39e\libbambuser-0.9.22\AndroidManifest.xml:24:5-26:36
+	android:required
+		ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:29:9-33
+	android:name
+		ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:28:9-53
+uses-feature#android.hardware.camera.front
+ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:30:5-32:36
+MERGED from [:libbambuser] D:\UCLAN\RemoteCamera\libbambuser\build\.transforms\78ceb4b007eff234831519b6c5d2d39e\libbambuser-0.9.22\AndroidManifest.xml:27:5-29:36
+MERGED from [:libbambuser] D:\UCLAN\RemoteCamera\libbambuser\build\.transforms\78ceb4b007eff234831519b6c5d2d39e\libbambuser-0.9.22\AndroidManifest.xml:27:5-29:36
+	android:required
+		ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:32:9-33
+	android:name
+		ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:31:9-53
+application
+ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:34:5-47:19
+MERGED from [com.google.android.material:material:1.3.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\32c10f231d1c8b782e7356b932b4d26d\material-1.3.0\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.3.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\32c10f231d1c8b782e7356b932b4d26d\material-1.3.0\AndroidManifest.xml:22:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.4] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\0bd77111d3c30ea8695f6ccac3e14b4f\constraintlayout-2.0.4\AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.4] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\0bd77111d3c30ea8695f6ccac3e14b4f\constraintlayout-2.0.4\AndroidManifest.xml:9:5-20
+MERGED from [:libbambuser] D:\UCLAN\RemoteCamera\libbambuser\build\.transforms\78ceb4b007eff234831519b6c5d2d39e\libbambuser-0.9.22\AndroidManifest.xml:31:5-32:19
+MERGED from [:libbambuser] D:\UCLAN\RemoteCamera\libbambuser\build\.transforms\78ceb4b007eff234831519b6c5d2d39e\libbambuser-0.9.22\AndroidManifest.xml:31:5-32:19
+MERGED from [androidx.core:core:1.3.1] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\bdec7c7a161f8b791677dc033bf597a6\core-1.3.1\AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.3.1] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\bdec7c7a161f8b791677dc033bf597a6\core-1.3.1\AndroidManifest.xml:24:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\c34a6eb0beeb1ff76a0cd1b61a1a7282\versionedparcelable-1.1.0\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\c34a6eb0beeb1ff76a0cd1b61a1a7282\versionedparcelable-1.1.0\AndroidManifest.xml:24:5-25:19
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.3.1] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\bdec7c7a161f8b791677dc033bf597a6\core-1.3.1\AndroidManifest.xml:24:18-86
+	android:supportsRtl
+		ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:36:9-35
+	android:allowBackup
+		ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:35:9-36
+	android:theme
+		ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:37:9-40
+activity#com.uclan.remotecamera.androidApp.MainActivity
+ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:38:9-46:20
+	android:screenOrientation
+		ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:41:13-49
+	android:configChanges
+		ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:40:13-48
+	android:name
+		ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:39:13-41
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:42:13-45:29
+action#android.intent.action.MAIN
+ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:43:17-69
+	android:name
+		ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:43:25-66
+category#android.intent.category.LAUNCHER
+ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:44:17-77
+	android:name
+		ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml:44:27-74
+uses-sdk
+INJECTED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml
+INJECTED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml
+MERGED from [androidx.databinding:databinding-adapters:4.2.0-beta04] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\8a6dbdebe9f44da5478a3b2db3c18837\databinding-adapters-4.2.0-beta04\AndroidManifest.xml:20:5-44
+MERGED from [androidx.databinding:databinding-adapters:4.2.0-beta04] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\8a6dbdebe9f44da5478a3b2db3c18837\databinding-adapters-4.2.0-beta04\AndroidManifest.xml:20:5-44
+MERGED from [androidx.databinding:databinding-runtime:4.2.0-beta04] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\c5a859dc1b9c34c93accbf892fc9977d\databinding-runtime-4.2.0-beta04\AndroidManifest.xml:20:5-44
+MERGED from [androidx.databinding:databinding-runtime:4.2.0-beta04] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\c5a859dc1b9c34c93accbf892fc9977d\databinding-runtime-4.2.0-beta04\AndroidManifest.xml:20:5-44
+MERGED from [androidx.databinding:viewbinding:4.2.0-beta04] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\cc3602d7dde90708567117c316aa4a56\viewbinding-4.2.0-beta04\AndroidManifest.xml:20:5-44
+MERGED from [androidx.databinding:viewbinding:4.2.0-beta04] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\cc3602d7dde90708567117c316aa4a56\viewbinding-4.2.0-beta04\AndroidManifest.xml:20:5-44
+MERGED from [:shared] D:\UCLAN\RemoteCamera\shared\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [:shared] D:\UCLAN\RemoteCamera\shared\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\e7ebd28a792be85a61b9ada171f4f94b\lifecycle-viewmodel-ktx-2.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\e7ebd28a792be85a61b9ada171f4f94b\lifecycle-viewmodel-ktx-2.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-ktx:2.3.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\28284aea1ddd41c78f40dc21a6b1039f\lifecycle-livedata-ktx-2.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-ktx:2.3.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\28284aea1ddd41c78f40dc21a6b1039f\lifecycle-livedata-ktx-2.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.3.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\06eababa483c7c8bdf0d4424bffcae4c\lifecycle-livedata-core-ktx-2.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.3.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\06eababa483c7c8bdf0d4424bffcae4c\lifecycle-livedata-core-ktx-2.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.material:material:1.3.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\32c10f231d1c8b782e7356b932b4d26d\material-1.3.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.3.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\32c10f231d1c8b782e7356b932b4d26d\material-1.3.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.4] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\0bd77111d3c30ea8695f6ccac3e14b4f\constraintlayout-2.0.4\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.4] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\0bd77111d3c30ea8695f6ccac3e14b4f\constraintlayout-2.0.4\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.appcompat:appcompat:1.2.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\2366a3235455611d3aaea444c5984dee\appcompat-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.2.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\2366a3235455611d3aaea444c5984dee\appcompat-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [:libbambuser] D:\UCLAN\RemoteCamera\libbambuser\build\.transforms\78ceb4b007eff234831519b6c5d2d39e\libbambuser-0.9.22\AndroidManifest.xml:7:5-9:41
+MERGED from [:libbambuser] D:\UCLAN\RemoteCamera\libbambuser\build\.transforms\78ceb4b007eff234831519b6c5d2d39e\libbambuser-0.9.22\AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.ar-android:libstreaming:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\aa43bf523f150d1894674aaa5b8a321e\libstreaming-1.0.0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.ar-android:libstreaming:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\aa43bf523f150d1894674aaa5b8a321e\libstreaming-1.0.0\AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\663e5d969f9432e67d63451f51089b20\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\663e5d969f9432e67d63451f51089b20\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\20a3e1928fcb5d49e42a0d05ca8749ab\dynamicanimation-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\20a3e1928fcb5d49e42a0d05ca8749ab\dynamicanimation-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.2.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\bf841b396dd94deb1c6475e591c3afe4\transition-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\bf841b396dd94deb1c6475e591c3afe4\transition-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.2.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\2335cd2b67a78f534d0319f439fffe88\appcompat-resources-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.2.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\2335cd2b67a78f534d0319f439fffe88\appcompat-resources-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\49fe335d44e1fc68d8fe1e572ce76583\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\49fe335d44e1fc68d8fe1e572ce76583\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\80888532ec7145d028a44161babaf421\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\80888532ec7145d028a44161babaf421\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\875b42b5cbc71197899b600244aa8781\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\875b42b5cbc71197899b600244aa8781\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\7eb0ab270ebe95026cbeed889a62c0b3\fragment-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\7eb0ab270ebe95026cbeed889a62c0b3\fragment-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\c63c3aa013d2d9c5a1ce2c47b1a0f22c\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\c63c3aa013d2d9c5a1ce2c47b1a0f22c\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\71a86c63f298d63bea8b108bd8e4753f\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\71a86c63f298d63bea8b108bd8e4753f\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\96cb9dfcf8b83888efa94737b0d85112\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\96cb9dfcf8b83888efa94737b0d85112\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\3bae9c5e4b0e232c86a8519e37396eaf\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\3bae9c5e4b0e232c86a8519e37396eaf\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\bd285099d6061d75c56fe99dbe99689a\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\bd285099d6061d75c56fe99dbe99689a\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\75675e9f0b942d37e84b1f6dbb52db08\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\75675e9f0b942d37e84b1f6dbb52db08\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\6ac09b2367c4bf46541bbc1f4f3c28dd\activity-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\6ac09b2367c4bf46541bbc1f4f3c28dd\activity-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.3.1] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\bdec7c7a161f8b791677dc033bf597a6\core-1.3.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.3.1] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\bdec7c7a161f8b791677dc033bf597a6\core-1.3.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\b49d918492960039bd184c743538f3a9\lifecycle-runtime-2.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\b49d918492960039bd184c743538f3a9\lifecycle-runtime-2.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\16de15efe8904ea527ce360c97a6ff71\cardview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\16de15efe8904ea527ce360c97a6ff71\cardview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\958f09778864289e9fd9a4850f015bd5\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\958f09778864289e9fd9a4850f015bd5\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.3.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\675f323312fa9b6cac4ad057cd99c3d9\lifecycle-livedata-2.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.3.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\675f323312fa9b6cac4ad057cd99c3d9\lifecycle-livedata-2.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\a239e113e0620b64d2ffb3a84187e831\lifecycle-livedata-core-2.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\a239e113e0620b64d2ffb3a84187e831\lifecycle-livedata-core-2.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\63cabac45f10b0bd314aa5ae4efa35a0\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\63cabac45f10b0bd314aa5ae4efa35a0\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\905c334550282324987960eaa0f9c14e\savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\905c334550282324987960eaa0f9c14e\savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\89a0c91b30b3edeb6407fc307b2f8088\lifecycle-viewmodel-2.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\89a0c91b30b3edeb6407fc307b2f8088\lifecycle-viewmodel-2.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\c34a6eb0beeb1ff76a0cd1b61a1a7282\versionedparcelable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\c34a6eb0beeb1ff76a0cd1b61a1a7282\versionedparcelable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\2c908a8871d4b02bef6bb8953c565797\documentfile-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\2c908a8871d4b02bef6bb8953c565797\documentfile-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\976122fdca0657c8af91e224a12164a9\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\976122fdca0657c8af91e224a12164a9\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\f96818f6269ca9fda4118eaeae63f2ec\print-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\f96818f6269ca9fda4118eaeae63f2ec\print-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\6eb72c911e2ddabaeb778eb9e7002ffa\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\6eb72c911e2ddabaeb778eb9e7002ffa\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\c8f141b8532f1cd3e44b527c924a6166\annotation-experimental-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.0.0] C:\Users\Catherine\.gradle\caches\transforms-2\files-2.1\c8f141b8532f1cd3e44b527c924a6166\annotation-experimental-1.0.0\AndroidManifest.xml:20:5-22:41
+INJECTED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml
+INJECTED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml
+		ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml
+		INJECTED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml
+		ADDED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml
+		INJECTED from D:\UCLAN\RemoteCamera\androidApp\src\main\AndroidManifest.xml
+uses-permission#android.permission.CAMERA
+ADDED from [:libbambuser] D:\UCLAN\RemoteCamera\libbambuser\build\.transforms\78ceb4b007eff234831519b6c5d2d39e\libbambuser-0.9.22\AndroidManifest.xml:11:5-65
+	android:name
+		ADDED from [:libbambuser] D:\UCLAN\RemoteCamera\libbambuser\build\.transforms\78ceb4b007eff234831519b6c5d2d39e\libbambuser-0.9.22\AndroidManifest.xml:11:22-62
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from [:libbambuser] D:\UCLAN\RemoteCamera\libbambuser\build\.transforms\78ceb4b007eff234831519b6c5d2d39e\libbambuser-0.9.22\AndroidManifest.xml:12:5-71
+	android:name
+		ADDED from [:libbambuser] D:\UCLAN\RemoteCamera\libbambuser\build\.transforms\78ceb4b007eff234831519b6c5d2d39e\libbambuser-0.9.22\AndroidManifest.xml:12:22-68

@@ -1,0 +1,2 @@
+com/uclan/remotecamera/shared/BuildConfig.java
+ com.uclan.remotecamera.shared.BuildConfig

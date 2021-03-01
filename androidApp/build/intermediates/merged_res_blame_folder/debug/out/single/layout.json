@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "D:\\UCLAN\\RemoteCamera\\androidApp\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_wifi.xml",
+        "source": "D:\\UCLAN\\RemoteCamera\\androidApp\\src\\main\\res\\layout\\fragment_wifi.xml"
+    },
+    {
+        "merged": "D:\\UCLAN\\RemoteCamera\\androidApp\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\recycler_view_item.xml",
+        "source": "D:\\UCLAN\\RemoteCamera\\androidApp\\src\\main\\res\\layout\\recycler_view_item.xml"
+    },
+    {
+        "merged": "D:\\UCLAN\\RemoteCamera\\androidApp\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_main.xml",
+        "source": "D:\\UCLAN\\RemoteCamera\\androidApp\\src\\main\\res\\layout\\activity_main.xml"
+    }
+]
