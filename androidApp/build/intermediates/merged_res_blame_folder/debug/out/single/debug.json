@@ -1,5 +1,13 @@
 [
     {
+        "merged": "D:\\UCLAN\\RemoteCamera\\androidApp\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_phone.png.flat",
+        "source": "D:\\UCLAN\\RemoteCamera\\androidApp\\src\\main\\res\\drawable-xhdpi\\ic_phone.png"
+    },
+    {
+        "merged": "D:\\UCLAN\\RemoteCamera\\androidApp\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi_ic_phone.xml.flat",
+        "source": "D:\\UCLAN\\RemoteCamera\\androidApp\\src\\main\\res\\drawable-anydpi\\ic_phone.xml"
+    },
+    {
         "merged": "D:\\UCLAN\\RemoteCamera\\androidApp\\build\\intermediates\\res\\merged\\debug\\layout_fragment_wifi.xml.flat",
         "source": "D:\\UCLAN\\RemoteCamera\\androidApp\\src\\main\\res\\layout\\fragment_wifi.xml"
     },
@@ -8,7 +16,23 @@
         "source": "D:\\UCLAN\\RemoteCamera\\androidApp\\src\\main\\res\\layout\\recycler_view_item.xml"
     },
     {
+        "merged": "D:\\UCLAN\\RemoteCamera\\androidApp\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_phone.png.flat",
+        "source": "D:\\UCLAN\\RemoteCamera\\androidApp\\src\\main\\res\\drawable-hdpi\\ic_phone.png"
+    },
+    {
         "merged": "D:\\UCLAN\\RemoteCamera\\androidApp\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
         "source": "D:\\UCLAN\\RemoteCamera\\androidApp\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "D:\\UCLAN\\RemoteCamera\\androidApp\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_phone.png.flat",
+        "source": "D:\\UCLAN\\RemoteCamera\\androidApp\\src\\main\\res\\drawable-mdpi\\ic_phone.png"
+    },
+    {
+        "merged": "D:\\UCLAN\\RemoteCamera\\androidApp\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_phone.png.flat",
+        "source": "D:\\UCLAN\\RemoteCamera\\androidApp\\src\\main\\res\\drawable-xxhdpi\\ic_phone.png"
+    },
+    {
+        "merged": "D:\\UCLAN\\RemoteCamera\\androidApp\\build\\intermediates\\res\\merged\\debug\\layout_fragment_settings.xml.flat",
+        "source": "D:\\UCLAN\\RemoteCamera\\androidApp\\src\\main\\res\\layout\\fragment_settings.xml"
     }
 ]

@@ -4,6 +4,7 @@ package com.uclan.remotecamera.androidApp.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,12 +28,16 @@ public final class RecyclerViewItemBinding implements ViewBinding {
   @NonNull
   public final TextView deviceType;
 
+  @NonNull
+  public final ImageView imageView;
+
   private RecyclerViewItemBinding(@NonNull CardView rootView, @NonNull CardView cardPertanyaan,
-      @NonNull TextView deviceInfo, @NonNull TextView deviceType) {
+      @NonNull TextView deviceInfo, @NonNull TextView deviceType, @NonNull ImageView imageView) {
     this.rootView = rootView;
     this.cardPertanyaan = cardPertanyaan;
     this.deviceInfo = deviceInfo;
     this.deviceType = deviceType;
+    this.imageView = imageView;
   }
 
   @Override
@@ -76,8 +81,14 @@ public final class RecyclerViewItemBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.imageView;
+      ImageView imageView = rootView.findViewById(id);
+      if (imageView == null) {
+        break missingId;
+      }
+
       return new RecyclerViewItemBinding((CardView) rootView, cardPertanyaan, deviceInfo,
-          deviceType);
+          deviceType, imageView);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -293,7 +293,6 @@ attr counterOverflowTextAppearance
 attr counterOverflowTextColor
 attr counterTextAppearance
 attr counterTextColor
-attr cropToParent
 attr crossfade
 attr currentState
 attr curveFit
@@ -315,7 +314,6 @@ attr defaultQueryHint
 attr defaultState
 attr deltaPolarAngle
 attr deltaPolarRadius
-attr denominator
 attr deriveConstraintsFrom
 attr dialogCornerRadius
 attr dialogPreferredPadding
@@ -653,7 +651,6 @@ attr navigationViewStyle
 attr nestedScrollFlags
 attr nestedScrollable
 attr number
-attr numerator
 attr numericModifiers
 attr onCross
 attr onHide
@@ -1646,6 +1643,7 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable ic_phone
 drawable material_cursor_drawable
 drawable material_ic_calendar_black_24dp
 drawable material_ic_clear_black_24dp
@@ -1874,6 +1872,7 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
+id imageView
 id info
 id invisible
 id inward
@@ -2065,6 +2064,7 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textTop
+id textView
 id textWatcher
 id text_input_end_icon
 id text_input_error_icon
@@ -2182,6 +2182,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout fragment_settings
 layout fragment_wifi
 layout material_chip_input_combo
 layout material_clock_display
@@ -3180,7 +3181,6 @@ styleable State android_id constraints
 styleable StateListDrawable android_dither android_visible android_variablePadding android_constantSize android_enterFadeDuration android_exitFadeDuration
 styleable StateListDrawableItem android_drawable
 styleable StateSet defaultState
-styleable SurfaceViewWithAutoAR cropToParent denominator numerator
 styleable SwitchCompat android_textOn android_textOff android_thumb showText splitTrack switchMinWidth switchPadding switchTextAppearance thumbTextPadding thumbTint thumbTintMode track trackTint trackTintMode
 styleable SwitchMaterial useMaterialThemeColors
 styleable TabItem android_icon android_layout android_text

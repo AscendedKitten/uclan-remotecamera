@@ -6,11 +6,15 @@
 
     <uses-sdk
         android:minSdkVersion="27"
-        android:targetSdkVersion="29" />
+        android:targetSdkVersion="30" />
 
     <uses-permission
         android:name="android.permission.ACCESS_FINE_LOCATION"
         android:required="true" />
+    <uses-permission
+        android:name="android.permission.ACCESS_COARSE_LOCATION"
+        android:required="true" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission
         android:name="android.permission.ACCESS_WIFI_STATE"
         android:required="true" />
@@ -37,16 +41,12 @@
         android:name="android.hardware.camera.front"
         android:required="false" />
 
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-
     <application
         android:allowBackup="false"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
         android:extractNativeLibs="false"
         android:supportsRtl="true"
-        android:testOnly="true"
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.uclan.remotecamera.androidApp.MainActivity"

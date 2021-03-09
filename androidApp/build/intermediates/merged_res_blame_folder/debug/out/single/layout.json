@@ -1,5 +1,9 @@
 [
     {
+        "merged": "D:\\UCLAN\\RemoteCamera\\androidApp\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_settings.xml",
+        "source": "D:\\UCLAN\\RemoteCamera\\androidApp\\src\\main\\res\\layout\\fragment_settings.xml"
+    },
+    {
         "merged": "D:\\UCLAN\\RemoteCamera\\androidApp\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_wifi.xml",
         "source": "D:\\UCLAN\\RemoteCamera\\androidApp\\src\\main\\res\\layout\\fragment_wifi.xml"
     },
