@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="deviceType">&lt;b>Type:&lt;/b> %s</string>
+    <string name="deviceStatus">&lt;b>Status:&lt;/b> %s</string>
+    <string name="deviceAddress">&lt;b>Address:&lt;/b> %s</string>
+    <string name="groupOwner">&lt;b>Group Owner:&lt;/b> %s</string>
+    <string name="groupIp">&lt;b>Group Owner IP:&lt;/b> %s</string>
+</resources>

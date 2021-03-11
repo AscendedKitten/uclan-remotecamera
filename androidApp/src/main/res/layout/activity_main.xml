@@ -11,16 +11,7 @@
     <FrameLayout
         android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="200dp"
-        android:layout_height="match_parent" />
-
-    <Button
-        android:id="@+id/scanConfirm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onClick"
-        android:layout_centerHorizontal="true"
-        android:text="Scan" />
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true" />
 
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.uclan.remotecamera.androidApp.p2p
 
+import android.app.ProgressDialog
 import android.net.wifi.WpsInfo
 import android.net.wifi.p2p.WifiP2pConfig
 import android.net.wifi.p2p.WifiP2pDevice
@@ -12,15 +13,33 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.uclan.remotecamera.androidApp.MainActivity
 import com.uclan.remotecamera.androidApp.databinding.FragmentWifiBinding
 import com.uclan.remotecamera.androidApp.utility.OnRecyclerViewItemClick
+import java.util.*
 
 class WiFiDirectFragment : Fragment(), WifiP2pManager.PeerListListener {
 
     private lateinit var listAdapter: WiFiDirectListAdapter
+    private lateinit var progressDialog: ProgressDialog
 
+    private var _connectingDevice: WifiP2pDevice? = null
+    val connectingDevice get() = _connectingDevice
     private var _binding: FragmentWifiBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var taskTimer: TimerTask
+
+    class PeerDiscoveryTask(private val activity: MainActivity?) : TimerTask() {
+        override fun run() {
+            if (activity == null) return
+            if (activity.supportFragmentManager.findFragmentByTag("WiFiDirectFragment") == null) return
+            if (!activity.supportFragmentManager.findFragmentByTag("WiFiDirectFragment")?.isVisible!!) return
+            activity.runOnUiThread {
+                activity.discoverPeers()
+            }
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,6 +55,21 @@ class WiFiDirectFragment : Fragment(), WifiP2pManager.PeerListListener {
         _binding = null
     }
 
+    override fun onPause() {
+        super.onPause()
+        Log.e("pause", "pause")
+        taskTimer.cancel()
+        if (this@WiFiDirectFragment::progressDialog.isInitialized && progressDialog.isShowing)
+            progressDialog.dismiss()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.e("resume", "resume")
+        taskTimer = PeerDiscoveryTask(activity as MainActivity)
+        Timer().scheduleAtFixedRate(taskTimer, 1000, 6000)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         listAdapter = WiFiDirectListAdapter(object : OnRecyclerViewItemClick {
@@ -44,9 +78,24 @@ class WiFiDirectFragment : Fragment(), WifiP2pManager.PeerListListener {
                 config.deviceAddress = device.deviceAddress
                 config.wps.setup = WpsInfo.PBC
                 Log.d("WifiDirectFragment", "Attempt connection from ${config.deviceAddress}")
+
+                _connectingDevice = device
+
+                if (this@WiFiDirectFragment::progressDialog.isInitialized && progressDialog.isShowing)
+                    progressDialog.dismiss()
+
+                progressDialog = ProgressDialog.show(
+                    activity,
+                    "Press back to cancel",
+                    "Connecting to :" + device.deviceName,
+                    true,
+                    true
+                ) {
+                    (activity as P2PConnectionActions).abort()
+                }
                 (activity as P2PConnectionActions).connect(config)
             }
-        })
+        }, context)
         binding.recyclerView.apply {
             adapter = listAdapter
             layoutManager = LinearLayoutManager(activity)
@@ -65,9 +114,15 @@ class WiFiDirectFragment : Fragment(), WifiP2pManager.PeerListListener {
         listAdapter.updateAll(newList)
     }
 
+    fun update(device: WifiP2pDevice?) {
+        if (device != null)
+            listAdapter.update(device)
+    }
+
     override fun onPeersAvailable(peers: WifiP2pDeviceList?) {
-        if (binding.progressBar.isShown)
-            hideProgressDialogue()
+        if (_binding != null)
+            if (binding.progressBar.isShown)
+                hideProgressDialogue()
 
         if (peers != null)
             if (!peers.deviceList.isEmpty())

@@ -11,6 +11,7 @@ import android.net.wifi.p2p.WifiP2pDevice
 import android.net.wifi.p2p.WifiP2pManager
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.location.LocationManagerCompat
 import androidx.databinding.DataBindingUtil
@@ -21,7 +22,7 @@ import com.uclan.remotecamera.androidApp.p2p.WiFiDirectFragment
 import com.uclan.remotecamera.androidApp.utility.GenericAlert
 import java.util.*
 
-class MainActivity : AppCompatActivity(), P2PConnectionActions {
+class MainActivity : AppCompatActivity(), P2PConnectionActions, WifiP2pManager.ChannelListener {
 
     companion object {
         const val PERMISSIONS_LOCATION_REQUEST_CODE = 1001
@@ -32,23 +33,11 @@ class MainActivity : AppCompatActivity(), P2PConnectionActions {
     private lateinit var manager: WifiP2pManager
     private lateinit var receiver: WiFiDirectBroadcastReceiver
 
-    private lateinit var taskTimer: TimerTask
-
+    var shouldRetry: Boolean = true
     var isWifiP2pEnabled: Boolean = false
 
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
-
-    class PeerDiscoveryTask(private val activity: MainActivity?) : TimerTask() {
-        override fun run() {
-            if (activity == null) return
-            if (!activity.supportFragmentManager.findFragmentByTag("WiFiDirectFragment")?.isVisible!!) return
-            activity.runOnUiThread {
-                Log.d("MainActivity", "still going")
-                activity.discoverPeers()
-            }
-        }
-    }
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -91,11 +80,13 @@ class MainActivity : AppCompatActivity(), P2PConnectionActions {
 
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, WiFiDirectFragment(), "WiFiDirectFragment")
+            .addToBackStack(null)
             .commit()
     }
 
     @SuppressWarnings("MissingPermission")
-    private fun discoverPeers() {
+    fun
+            discoverPeers() {
         val wifiFrag: WiFiDirectFragment =
             supportFragmentManager.findFragmentByTag("WiFiDirectFragment") as WiFiDirectFragment
         if (isWifiP2pEnabled) {
@@ -132,7 +123,6 @@ class MainActivity : AppCompatActivity(), P2PConnectionActions {
                 .show()
             wifiFrag.hideProgressDialogue()
         }
-
     }
 
     fun updateAll(newList: List<WifiP2pDevice>) {
@@ -156,16 +146,66 @@ class MainActivity : AppCompatActivity(), P2PConnectionActions {
     }
 
     override fun disconnect() {
+        Log.d("MainActivity", "Disconnecting")
+        supportFragmentManager.popBackStack()
+
+        manager.removeGroup(channel, object : WifiP2pManager.ActionListener {
+            override fun onSuccess() {
+                Toast.makeText(
+                    this@MainActivity, "Disconnected",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+            override fun onFailure(reason: Int) {
+                Log.d("MainActivity", "Cannot disconnect: error code $reason")
+            }
+
+        })
     }
 
     override fun abort() {
-        TODO("Not yet implemented")
+        val wifiFrag: WiFiDirectFragment =
+            supportFragmentManager.findFragmentByTag("WiFiDirectFragment") as WiFiDirectFragment
+        if (wifiFrag.connectingDevice?.status == WifiP2pDevice.CONNECTED)
+            disconnect()
+        else if (wifiFrag.connectingDevice?.status == WifiP2pDevice.AVAILABLE
+            || wifiFrag.connectingDevice?.status == WifiP2pDevice.INVITED
+        )
+            manager.cancelConnect(channel, object : WifiP2pManager.ActionListener {
+                override fun onSuccess() {
+                    Toast.makeText(
+                        this@MainActivity, "Aborting connection",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                override fun onFailure(reason: Int) {
+                    Toast.makeText(
+                        this@MainActivity, "Connection cannot be aborted, error code $reason",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+            })
+    }
+
+    override fun onChannelDisconnected() {
+        if (shouldRetry) {
+            Toast.makeText(this, "Lost connection, retrying", Toast.LENGTH_LONG).show()
+            shouldRetry = false
+            manager.initialize(this, mainLooper, this)
+        } else {
+            Toast.makeText(
+                this,
+                "Connection lost",
+                Toast.LENGTH_LONG
+            ).show()
+        }
     }
 
     override fun onResume() {
         super.onResume()
-        taskTimer = PeerDiscoveryTask(this)
-        Timer().scheduleAtFixedRate(taskTimer, 1000, 6000)
         receiver.also { receiver ->
             registerReceiver(receiver, intentFilter)
         }
@@ -173,7 +213,6 @@ class MainActivity : AppCompatActivity(), P2PConnectionActions {
 
     override fun onPause() {
         super.onPause()
-        taskTimer.cancel()
         receiver.also { receiver ->
             unregisterReceiver(receiver)
         }
