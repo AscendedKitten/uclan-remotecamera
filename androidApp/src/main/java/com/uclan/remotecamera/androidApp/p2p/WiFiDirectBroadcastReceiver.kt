@@ -23,7 +23,7 @@ class WiFiDirectBroadcastReceiver(
     @SuppressWarnings("MissingPermission")
     override fun onReceive(context: Context, intent: Intent) {
         when (intent.action) {
-
+            
             WifiManager.WIFI_STATE_CHANGED_ACTION -> {
                 val state = intent.getIntExtra(WifiManager.WIFI_STATE_CHANGED_ACTION, -1)
                 Log.d("Broadcaster", "WiFi state changed to $state")
@@ -41,7 +41,7 @@ class WiFiDirectBroadcastReceiver(
                 val wiFiFrag: WiFiDirectFragment =
                     activity.supportFragmentManager.findFragmentByTag("WiFiDirectFragment") as WiFiDirectFragment
                 manager.requestPeers(channel, wiFiFrag)
-                Log.d("Broadcaster", "peer discovery success 2")
+                Log.d("Broadcaster", "peer discovery success: devices found")
 
             }
             WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION -> {
@@ -54,7 +54,6 @@ class WiFiDirectBroadcastReceiver(
 
                     activity.supportFragmentManager.beginTransaction()
                         .replace(R.id.fragmentContainer, fragment, "CameraSettingsFragment")
-                        .addToBackStack(null)
                         .commit()
                     manager.requestConnectionInfo(channel, fragment)
 
@@ -68,7 +67,13 @@ class WiFiDirectBroadcastReceiver(
 
                         if (fragment != null && fragment.isVisible) {
                             Log.e("Broadcaster", "Other device disconnected")
-                            activity.supportFragmentManager.popBackStack()
+                            activity.supportFragmentManager.beginTransaction()
+                                .replace(
+                                    R.id.fragmentContainer,
+                                    WiFiDirectFragment(),
+                                    "WiFiDirectFragment"
+                                )
+                                .commit()
                             Toast.makeText(
                                 activity, "Disconnected",
                                 Toast.LENGTH_SHORT

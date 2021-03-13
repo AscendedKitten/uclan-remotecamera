@@ -17,6 +17,7 @@ class CameraSettingsFragment : Fragment(), WifiP2pManager.ConnectionInfoListener
 
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
+
     private lateinit var info: WifiP2pInfo
 
     override fun onCreateView(
@@ -34,6 +35,7 @@ class CameraSettingsFragment : Fragment(), WifiP2pManager.ConnectionInfoListener
             (activity as P2PConnectionActions).disconnect()
         }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -61,7 +63,13 @@ class CameraSettingsFragment : Fragment(), WifiP2pManager.ConnectionInfoListener
                 HtmlCompat.FROM_HTML_MODE_LEGACY
             )
         }
-    }
 
+        if (info.isGroupOwner) {
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.fragmentContainer, CameraFragment(), "CameraFragment")
+                ?.commit()
+            Log.d("CameraSettingsFragment", "crash time")
+        }
+    }
 
 }
