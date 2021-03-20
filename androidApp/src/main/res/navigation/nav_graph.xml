@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/wiFiDirectFragment">
+
+    <fragment
+        android:id="@+id/wiFiDirectFragment"
+        android:name="com.uclan.remotecamera.androidApp.p2p.WiFiDirectFragment"
+        android:label="WiFiDirectFragment"
+        tools:layout="@layout/fragment_wifi">
+        <action
+            android:id="@+id/toSettingsFragment"
+            app:destination="@id/cameraSettingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cameraSettingsFragment"
+        android:name="com.uclan.remotecamera.androidApp.stream.CameraSettingsFragment"
+        android:label="CameraSettingsFragment"
+        tools:layout="@layout/fragment_settings">
+        <argument
+            android:name="wifiP2pInfo"
+            app:argType="android.net.wifi.p2p.WifiP2pInfo" />
+        <action
+            android:id="@+id/toDisplayFragment"
+            app:destination="@id/displayFragment"/>
+        <action
+            android:id="@+id/toCameraFragment"
+            app:destination="@id/cameraFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/cameraFragment"
+        android:name="com.uclan.remotecamera.androidApp.stream.CameraFragment"
+        android:label="CameraFragment"
+        tools:layout="@layout/fragment_camera">
+        <argument
+            android:name="owner_port"
+            app:argType="integer" />
+        <argument
+            android:name="owner_address"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/displayFragment"
+        android:name="com.uclan.remotecamera.androidApp.stream.DisplayFragment"
+        android:label="DisplayFragment"
+        tools:layout="@layout/fragment_display">
+        <argument
+            android:name="owner_port"
+            app:argType="integer" />
+        <argument
+            android:name="owner_address"
+            app:argType="string" />
+    </fragment>
+</navigation>

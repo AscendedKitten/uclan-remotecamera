@@ -1,24 +1,30 @@
 package com.uclan.remotecamera.androidApp.stream
 
 import android.net.wifi.p2p.WifiP2pInfo
-import android.net.wifi.p2p.WifiP2pManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AlertDialog
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.uclan.remotecamera.androidApp.R
 import com.uclan.remotecamera.androidApp.databinding.FragmentSettingsBinding
 import com.uclan.remotecamera.androidApp.p2p.P2PConnectionActions
 
-class CameraSettingsFragment : Fragment(), WifiP2pManager.ConnectionInfoListener {
+class CameraSettingsFragment : Fragment() {
 
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var info: WifiP2pInfo
+
+    companion object {
+        const val PORT = 8898
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,25 +35,41 @@ class CameraSettingsFragment : Fragment(), WifiP2pManager.ConnectionInfoListener
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding.btnDisconnect.setOnClickListener {
-            (activity as P2PConnectionActions).disconnect()
-        }
-    }
-
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
-    override fun onPause() {
-        super.onPause()
-        //(activity as P2PConnectionActions).disconnect()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    val alertDialogBuilder: AlertDialog.Builder =
+                        AlertDialog.Builder(requireContext())
+                    alertDialogBuilder.setMessage("Disconnect Wifi Direct?")
+                    alertDialogBuilder.setCancelable(true)
+
+                    alertDialogBuilder.setPositiveButton(
+                        getString(android.R.string.ok)
+                    ) { dialog, _ ->
+                        (activity as P2PConnectionActions).disconnect()
+                        dialog.cancel()
+                    }
+
+                    val alertDialog: AlertDialog = alertDialogBuilder.create()
+                    alertDialog.show()
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
     }
 
-    override fun onConnectionInfoAvailable(info: WifiP2pInfo?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        init(CameraSettingsFragmentArgs.fromBundle(requireArguments()).wifiP2pInfo)
+    }
+
+    private fun init(info: WifiP2pInfo?) {
         this.info = info!!
         Log.d("CameraSettings", "Established connection from: ${info.groupOwnerAddress}")
 
@@ -64,12 +86,30 @@ class CameraSettingsFragment : Fragment(), WifiP2pManager.ConnectionInfoListener
             )
         }
 
-        if (info.isGroupOwner) {
-            activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(R.id.fragmentContainer, CameraFragment(), "CameraFragment")
-                ?.commit()
-            Log.d("CameraSettingsFragment", "crash time")
+        binding.btnConfirm.text = if (info.isGroupOwner) "Start camera" else "Start receiver"
+
+        binding.btnConfirm.setOnClickListener {
+            val ownerAddress = info.groupOwnerAddress.hostAddress
+            if (info.isGroupOwner) {
+                Log.d("CameraSettingsFragment", "Identified group owner, starting camera fragment")
+                findNavController().navigate(
+                    CameraSettingsFragmentDirections.toCameraFragment(
+                        PORT,
+                        ownerAddress
+                    )
+                )
+            } else {
+                Log.d(
+                    "CameraSettingsFragment",
+                    "Identified group member, starting display fragment"
+                )
+                findNavController().navigate(
+                    CameraSettingsFragmentDirections.toDisplayFragment(
+                        PORT,
+                        ownerAddress
+                    )
+                )
+            }
         }
     }
-
 }

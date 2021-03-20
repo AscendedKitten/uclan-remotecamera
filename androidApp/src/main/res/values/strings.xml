@@ -6,4 +6,5 @@
     <string name="groupOwner">&lt;b>Group Owner:&lt;/b> %s</string>
     <string name="groupIp">&lt;b>Group Owner IP:&lt;/b> %s</string>
     <string name="capture_image">Capture image</string>
+    <string name="app_name">Remote Camera</string>
 </resources>

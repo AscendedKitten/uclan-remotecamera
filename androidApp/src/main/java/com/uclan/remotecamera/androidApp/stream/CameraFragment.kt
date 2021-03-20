@@ -1,116 +1,43 @@
 package com.uclan.remotecamera.androidApp.stream
 
-import android.annotation.SuppressLint
-import android.graphics.ImageFormat
-import android.graphics.Rect
-import android.graphics.YuvImage
-import android.media.Image
+import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
-import android.util.Size
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
-import androidx.camera.camera2.Camera2Config
-import androidx.camera.core.*
-import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil
+import android.view.*
 import androidx.fragment.app.Fragment
-import com.google.common.util.concurrent.ListenableFuture
-import com.uclan.remotecamera.androidApp.R
+import com.pedro.rtsp.utils.ConnectCheckerRtsp
 import com.uclan.remotecamera.androidApp.databinding.FragmentCameraBinding
+import com.uclan.remotecamera.androidApp.utility.GenericAlert
+import com.uclan.remotecamera.androidApp.utility.SimpleAsyncClient
+import com.uclan.remotecamera.androidApp.utility.SimpleBroadcastServer
+import io.ktor.util.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import libs.pedroSG94.RtspServerCamera2
 import java.io.ByteArrayOutputStream
-import java.io.File
-import java.nio.ByteBuffer
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
+import java.util.*
 
-class CameraFragment : Fragment(), CameraXConfig.Provider {
 
-    companion object {
-        private fun nv21ToJPEG(nv21: ByteArray?): ByteArray? {
-            val out = ByteArrayOutputStream()
-            val yuv = YuvImage(nv21, ImageFormat.NV21, 1280, 720, null)
-            yuv.compressToJpeg(Rect(0, 0, 1280, 720), 0, out)
-            return out.toByteArray()
-        }
-
-        private fun yuv420880toNV21(image: Image): ByteArray {
-            val crop: Rect = image.cropRect
-            val format = image.format
-            val width: Int = crop.width()
-            val height: Int = crop.height()
-            val planes = image.planes
-            val data = ByteArray(width * height * ImageFormat.getBitsPerPixel(format) / 8)
-            val rowData = ByteArray(planes[0].rowStride)
-            var channelOffset = 0
-            var outputStride = 1
-            for (i in planes.indices) {
-                when (i) {
-                    0 -> {
-                        channelOffset = 0
-                        outputStride = 1
-                    }
-                    1 -> {
-                        channelOffset = width * height + 1
-                        outputStride = 2
-                    }
-                    2 -> {
-                        channelOffset = width * height
-                        outputStride = 2
-                    }
-                }
-                val buffer: ByteBuffer = planes[i].buffer
-                val rowStride = planes[i].rowStride
-                val pixelStride = planes[i].pixelStride
-                val shift = if (i == 0) 0 else 1
-                val w = width shr shift
-                val h = height shr shift
-                buffer.position(rowStride * (crop.top shr shift) + pixelStride * (crop.left shr shift))
-                for (row in 0 until h) {
-                    var length: Int
-                    if (pixelStride == 1 && outputStride == 1) {
-                        length = w
-                        buffer.get(data, channelOffset, length)
-                        channelOffset += length
-                    } else {
-                        length = (w - 1) * pixelStride + 1
-                        buffer.get(rowData, 0, length)
-                        for (col in 0 until w) {
-                            data[channelOffset] = rowData[col * pixelStride]
-                            channelOffset += outputStride
-                        }
-                    }
-                    if (row < h - 1) {
-                        buffer.position(buffer.position() + rowStride - length)
-                    }
-                }
-            }
-            return data
-        }
-    }
+class CameraFragment : Fragment(), ConnectCheckerRtsp, SurfaceHolder.Callback,
+    View.OnTouchListener {
 
     private var _binding: FragmentCameraBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var cameraExecutor: ExecutorService
-    private val imageAnalysis = ImageAnalysis.Builder()
-        .setTargetResolution(Size(1280, 720))
-        .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
-        .build()
-
-    private val imageCapture = ImageCapture.Builder()
-        .setTargetRotation(requireView().display.rotation)
-        .setCaptureMode(ImageCapture.CAPTURE_MODE_MAXIMIZE_QUALITY)
-        .build()
-
-    private lateinit var cameraProvider: ListenableFuture<ProcessCameraProvider>
+    private lateinit var rtspServerCamera: RtspServerCamera2
+    private lateinit var httpServer: SimpleBroadcastServer
+    private lateinit var gestureDetector: GestureDetector
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        cameraProvider = ProcessCameraProvider.getInstance(requireContext())
+        requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        SimpleBroadcastServer(CameraSettingsFragment.PORT).start()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 
     override fun onCreateView(
@@ -118,64 +45,182 @@ class CameraFragment : Fragment(), CameraXConfig.Provider {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        cameraExecutor = Executors.newSingleThreadExecutor()
-        _binding = DataBindingUtil.setContentView(requireActivity(), R.layout.fragment_camera)
         _binding = FragmentCameraBinding.inflate(inflater, container, false)
-        binding.floatingActionButton.setOnClickListener {
-            val outputFileOptions = ImageCapture.OutputFileOptions.Builder(File("")).build()
-            imageCapture.takePicture(outputFileOptions, cameraExecutor,
-                object : ImageCapture.OnImageSavedCallback {
-                    override fun onError(error: ImageCaptureException) {
-                        Log.e("CameraFragment", "Error capturing: ${error.message}")
-                        Toast.makeText(
-                            context, "Error capturing image",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-
-                    override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
-
-                    }
-                })
-        }
         return binding.root
     }
 
-    @SuppressLint("UnsafeExperimentalUsageError")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        with(binding.surfaceView) {
+            rtspServerCamera = RtspServerCamera2(this, this@CameraFragment, 1935)
+            holder.addCallback(this@CameraFragment)
+            setOnTouchListener(this@CameraFragment)
 
-        cameraProvider.addListener({
-            val provider = cameraProvider.get()
-            attachPreview(provider)
-        }, ContextCompat.getMainExecutor(requireContext()))
+            gestureDetector = GestureDetector(
+                requireContext(),
+                object : GestureDetector.SimpleOnGestureListener() {
+                    override fun onDown(e: MotionEvent?): Boolean {
 
-        imageAnalysis.setAnalyzer(cameraExecutor, { image ->
+                        return true
+                    }
 
-            var compressed: ByteArray? = nv21ToJPEG(yuv420880toNV21(image.image!!))
-
-            //YUV_420_888: original format
-            //https://stackoverflow.com/questions/41775968/how-to-convert-android-media-image-to-bitmap-object
-
-            Log.d("CameraFragment", "rotation ")
-            image.close()
-        })
+                    override fun onSingleTapConfirmed(e: MotionEvent?): Boolean {
+                        Log.e("maybe", "we should call this")
+                        rtspServerCamera.tapToFocus(e)
+                        return true
+                    }
+                })
+        }
     }
 
-    // Control via intent from settings fragment? Look into demo project's setting fragment
-    private fun attachPreview(provider: ProcessCameraProvider) {
-        val preview: Preview = Preview.Builder().build()
+    @KtorExperimentalAPI
+    private fun init() {
+        if (rtspServerCamera.prepareVideo()) {
+            Log.d("CameraFragment", "Video prepared, attempting stream")
+            rtspServerCamera.startStream()
+            rtspServerCamera.startPreview()
 
-        val cameraChoice: CameraSelector = CameraSelector.Builder()
-            .requireLensFacing(CameraSelector.LENS_FACING_BACK)
-            .build()
+            CoroutineScope(Dispatchers.IO).launch {
+                SimpleAsyncClient(httpUrl()!!, httpPort()).advertise(this@CameraFragment)
+            }
 
-        preview.setSurfaceProvider(binding.previewFrame.surfaceProvider)
-        provider.bindToLifecycle(this, cameraChoice, imageAnalysis, preview)
+            binding.button.setOnClickListener {
+                //broadcastRtspUrl()
+            }
+        } else
+            GenericAlert().create(
+                requireContext(),
+                "Error",
+                "Device does not support RTSP streaming"
+            ).show()
     }
 
-    // Control via intent from settings fragment?
-    override fun getCameraXConfig(): CameraXConfig {
-        return Camera2Config.defaultConfig()
+    /*
+                run {
+                val filename = "${System.currentTimeMillis()}.png"
+                val write: (OutputStream) -> Boolean = {
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, it)
+                }
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    val contentValues = ContentValues().apply {
+                        put(MediaStore.MediaColumns.DISPLAY_NAME, filename)
+                        put(MediaStore.MediaColumns.MIME_TYPE, "image/png")
+                        put(
+                            MediaStore.MediaColumns.RELATIVE_PATH,
+                            "${Environment.DIRECTORY_DCIM}/yeet"
+                        )
+                    }
+
+                    requireContext().contentResolver.let {
+                        it.insert(
+                            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                            contentValues
+                        )
+                            ?.let { uri ->
+                                it.openOutputStream(uri)?.let(write)
+                            }
+                    }
+                } else {
+                    val imagesDir =
+                        Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)
+                            .toString() + File.separator + "yeet"
+                    val file = File(imagesDir)
+                    if (!file.exists()) {
+                        file.mkdir()
+                    }
+                    val image = File(imagesDir, filename)
+                    write(FileOutputStream(image))
+                }
+            }
+     */
+
+    fun captureImageAsByteArray(): ByteArray? {
+        var byteArray: ByteArray? = null
+        rtspServerCamera.glInterface.takePhoto { bitmap ->
+            val outputStream = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+            byteArray = outputStream.toByteArray()
+        }
+        return byteArray
+    }
+
+    private fun broadcastRtspUrl() {
+        val service = Intent(activity, LocalFileTransferService::class.java)
+        service.action = LocalFileTransferService.ACTION_SEND_URL
+        service.putExtra(
+            LocalFileTransferService.EXTRAS_RTSP_LINK,
+            rtspServerCamera.getEndPointConnection()
+        )
+        service.putExtra(
+            LocalFileTransferService.EXTRAS_GROUP_OWNER_ADDRESS,
+            arguments?.getString("OWNER_ADDRESS")
+        )
+        service.putExtra(
+            LocalFileTransferService.EXTRAS_GROUP_OWNER_PORT,
+            arguments?.getInt("OWNER_PORT")
+        )
+        LocalFileTransferService.enqueueWork(requireContext(), service)
+    }
+
+    override fun onTouch(v: View?, event: MotionEvent): Boolean {
+        gestureDetector.onTouchEvent(event)
+        when (val action = event.action) {
+            MotionEvent.ACTION_MOVE -> {
+                if (event.pointerCount > 1)
+                    if (action == MotionEvent.ACTION_MOVE)
+                        rtspServerCamera.setZoom(event)
+            }
+        }
+        return true
+    }
+
+    fun rtspUrl(): String = rtspServerCamera.getEndPointConnection()
+
+    fun httpPort(): Int = requireArguments().getInt("OWNER_PORT")
+
+    fun httpUrl(): String? = requireArguments().getString("OWNER_ADDRESS")
+
+
+    override fun onAuthErrorRtsp() {
+        Log.e("CameraFragment", "RTSP auth failure")
+        rtspServerCamera.stopStream()
+    }
+
+    override fun onAuthSuccessRtsp() {
+        Log.d("CameraFragment", "RTSP auth success")
+    }
+
+    override fun onConnectionFailedRtsp(reason: String) {
+        Log.e("CameraFragment", "RTSP connection failure with error $reason")
+        rtspServerCamera.stopStream()
+    }
+
+    override fun onConnectionSuccessRtsp() {
+        Log.d("CameraFragment", "RTSP connection success")
+    }
+
+    override fun onDisconnectRtsp() {
+        Log.d("CameraFragment", "RTSP disconnected")
+    }
+
+    override fun onNewBitrateRtsp(bitrate: Long) {
+        Log.d("CameraFragment", "Bitrate updated to $bitrate")
+    }
+
+    override fun surfaceCreated(holder: SurfaceHolder) {
+        init()
+        Log.d("CameraFragment", "Surface created")
+    }
+
+    override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
+        Log.d("CameraFragment", "Surface changed; start preview")
+        rtspServerCamera.startPreview()
+    }
+
+    override fun surfaceDestroyed(holder: SurfaceHolder) {
+        if (rtspServerCamera.isStreaming)
+            rtspServerCamera.stopStream()
+        rtspServerCamera.stopPreview()
     }
 }

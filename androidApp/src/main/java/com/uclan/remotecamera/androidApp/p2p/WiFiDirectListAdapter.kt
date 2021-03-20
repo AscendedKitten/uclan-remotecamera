@@ -2,6 +2,7 @@ package com.uclan.remotecamera.androidApp.p2p
 
 import android.content.Context
 import android.net.wifi.p2p.WifiP2pDevice
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

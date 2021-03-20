@@ -3,6 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/btn_confirm"
+        android:layout_marginHorizontal="20dp"
+        android:background="#000" />
+
     <TextView
         android:id="@+id/groupOwner"
         android:layout_width="wrap_content"
@@ -19,9 +26,10 @@
         android:layout_centerHorizontal="true"
         android:textSize="20sp" />
 
+
     <Button
-        android:id="@+id/btn_disconnect"
+        android:id="@+id/btn_confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

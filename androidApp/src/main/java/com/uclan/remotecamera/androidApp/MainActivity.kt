@@ -2,7 +2,6 @@ package com.uclan.remotecamera.androidApp
 
 import android.Manifest
 import android.content.Context
-import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.location.LocationManager
@@ -12,13 +11,15 @@ import android.net.wifi.p2p.WifiP2pDevice
 import android.net.wifi.p2p.WifiP2pManager
 import android.os.Bundle
 import android.util.Log
-import android.view.KeyEvent
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.location.LocationManagerCompat
 import androidx.databinding.DataBindingUtil
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.NavDeepLinkBuilder
+import androidx.navigation.fragment.NavHostFragment
 import com.uclan.remotecamera.androidApp.databinding.ActivityMainBinding
 import com.uclan.remotecamera.androidApp.p2p.P2PConnectionActions
 import com.uclan.remotecamera.androidApp.p2p.WiFiDirectBroadcastReceiver
@@ -29,12 +30,14 @@ import java.util.*
 class MainActivity : AppCompatActivity(), P2PConnectionActions, WifiP2pManager.ChannelListener {
 
     companion object {
-        const val PERMISSIONS_LOCATION_REQUEST_CODE = 1001
-        const val PERMISSIONS_USE_CAMERA = 100
-        const val RELAY_KEY_DOWN = "relay_key_down"
+        const val GENERIC_PERMISSIONS_CODE = 1001
 
         private val REQUIRED_PERMISSIONS =
-            arrayOf(Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION)
+            arrayOf(
+                Manifest.permission.CAMERA,
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.RECORD_AUDIO
+            )
 
         fun hasPermissions(context: Context) = REQUIRED_PERMISSIONS.all {
             ContextCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED
@@ -46,6 +49,7 @@ class MainActivity : AppCompatActivity(), P2PConnectionActions, WifiP2pManager.C
     private lateinit var channel: WifiP2pManager.Channel
     private lateinit var manager: WifiP2pManager
     private lateinit var receiver: WiFiDirectBroadcastReceiver
+    private lateinit var navController: NavController
 
     var shouldRetry: Boolean = true
     var isWifiP2pEnabled: Boolean = false
@@ -59,7 +63,7 @@ class MainActivity : AppCompatActivity(), P2PConnectionActions, WifiP2pManager.C
         grantResults: IntArray
     ) {
         when (requestCode) {
-            PERMISSIONS_USE_CAMERA, PERMISSIONS_LOCATION_REQUEST_CODE -> if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+            GENERIC_PERMISSIONS_CODE -> if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
                 Log.e("MainActivity", "Permission was denied")
                 finish()
             }
@@ -68,7 +72,6 @@ class MainActivity : AppCompatActivity(), P2PConnectionActions, WifiP2pManager.C
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION)
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION)
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION)
@@ -81,35 +84,34 @@ class MainActivity : AppCompatActivity(), P2PConnectionActions, WifiP2pManager.C
         _binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         _binding = ActivityMainBinding.inflate(layoutInflater)
 
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainer) as NavHostFragment
+        navController = navHostFragment.navController
+
         if (!isSupported() && isWifiP2pEnabled)
             GenericAlert().create(this@MainActivity, "Error", "Device does not support WiFi Direct")
                 .show()
-        else if (hasPermissions(this)) {
-
-            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED
-            ) {
-                requestPermissions(
-                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                    PERMISSIONS_LOCATION_REQUEST_CODE
-                )
-            }
-
+        else if (!hasPermissions(this)) {
+            requestPermissions(
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.CAMERA,
+                    Manifest.permission.RECORD_AUDIO
+                ),
+                GENERIC_PERMISSIONS_CODE
+            )
         }
-
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragmentContainer, WiFiDirectFragment(), "WiFiDirectFragment")
-            .commit()
     }
 
     @SuppressWarnings("MissingPermission")
-    fun
-            discoverPeers() {
-        val wifiFrag: WiFiDirectFragment =
-            supportFragmentManager.findFragmentByTag("WiFiDirectFragment") as WiFiDirectFragment
+    fun discoverPeers() {
+        //Only used for progression status
+        val wifiFrag =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainer)?.childFragmentManager?.primaryNavigationFragment as? WiFiDirectFragment
+
         if (isWifiP2pEnabled) {
             if (isLocationEnabled()) {
-                wifiFrag.showProgressDialogue()
+                wifiFrag?.showProgressDialogue()
                 manager.discoverPeers(channel, object : WifiP2pManager.ActionListener {
                     override fun onSuccess() {
                         Log.v("MainActivity", "peer discovery success")
@@ -120,7 +122,7 @@ class MainActivity : AppCompatActivity(), P2PConnectionActions, WifiP2pManager.C
                             "MainActivity",
                             "peer discovery failure, error code $reasonCode"
                         )
-                        wifiFrag.hideProgressDialogue()
+                        wifiFrag?.hideProgressDialogue()
                     }
                 })
             } else {
@@ -130,7 +132,7 @@ class MainActivity : AppCompatActivity(), P2PConnectionActions, WifiP2pManager.C
                     "Please enable Location Services!"
                 )
                     .show()
-                wifiFrag.hideProgressDialogue()
+                wifiFrag?.hideProgressDialogue()
             }
         } else {
             GenericAlert().create(
@@ -139,19 +141,22 @@ class MainActivity : AppCompatActivity(), P2PConnectionActions, WifiP2pManager.C
                 "Please enable WiFi!"
             )
                 .show()
-            wifiFrag.hideProgressDialogue()
+            wifiFrag?.hideProgressDialogue()
         }
     }
 
     fun updateAll(newList: List<WifiP2pDevice>) {
-        (supportFragmentManager.findFragmentByTag("WiFiDirectFragment") as WiFiDirectFragment).updateAll(
-            newList
-        )
+        val fragment = supportFragmentManager.findFragmentByTag("WiFiDirectFragment")
+        if (fragment != null && fragment.isVisible)
+            (supportFragmentManager.findFragmentByTag("WiFiDirectFragment") as WiFiDirectFragment).updateAll(
+                newList
+            )
     }
 
     @SuppressWarnings("MissingPermission")
     override fun connect(config: WifiP2pConfig?) {
         manager.connect(channel, config, object : WifiP2pManager.ActionListener {
+
             override fun onSuccess() {
                 Log.v("MainActivity", "connection success")
             }
@@ -165,9 +170,12 @@ class MainActivity : AppCompatActivity(), P2PConnectionActions, WifiP2pManager.C
 
     override fun disconnect() {
         Log.d("MainActivity", "Disconnecting")
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragmentContainer, WiFiDirectFragment(), "WiFiDirectFragment")
-            .commit()
+
+        NavDeepLinkBuilder(applicationContext)
+            .setGraph(R.navigation.nav_graph)
+            .setDestination(R.id.wiFiDirectFragment)
+            .createPendingIntent()
+            .send()
 
         manager.removeGroup(channel, object : WifiP2pManager.ActionListener {
             override fun onSuccess() {
@@ -190,12 +198,11 @@ class MainActivity : AppCompatActivity(), P2PConnectionActions, WifiP2pManager.C
     }
 
     override fun abort() {
-        val wifiFrag: WiFiDirectFragment =
-            supportFragmentManager.findFragmentByTag("WiFiDirectFragment") as WiFiDirectFragment
-        if (wifiFrag.connectingDevice?.status == WifiP2pDevice.CONNECTED)
+        val wifiFrag: WiFiDirectFragment? = currentNavigationFragment() as? WiFiDirectFragment
+        if (wifiFrag?.connectingDevice?.status == WifiP2pDevice.CONNECTED)
             disconnect()
-        else if (wifiFrag.connectingDevice?.status == WifiP2pDevice.AVAILABLE
-            || wifiFrag.connectingDevice?.status == WifiP2pDevice.INVITED
+        else if (wifiFrag?.connectingDevice?.status == WifiP2pDevice.AVAILABLE
+            || wifiFrag?.connectingDevice?.status == WifiP2pDevice.INVITED
         )
             manager.cancelConnect(channel, object : WifiP2pManager.ActionListener {
                 override fun onSuccess() {
@@ -243,17 +250,6 @@ class MainActivity : AppCompatActivity(), P2PConnectionActions, WifiP2pManager.C
         }
     }
 
-    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-        return when (keyCode) {
-            KeyEvent.KEYCODE_VOLUME_DOWN -> {
-                val intent = Intent(RELAY_KEY_DOWN).apply { putExtra(RELAY_KEY_DOWN, keyCode) }
-                LocalBroadcastManager.getInstance(this).sendBroadcast(intent)
-                true
-            }
-            else -> super.onKeyDown(keyCode, event)
-        }
-    }
-
     fun setIsWifiP2pEnabled(isWifiP2pEnabled: Boolean) {
         this.isWifiP2pEnabled = isWifiP2pEnabled
     }
@@ -287,4 +283,9 @@ class MainActivity : AppCompatActivity(), P2PConnectionActions, WifiP2pManager.C
 
         return true
     }
+
+    fun currentNavigationFragment(): Fragment? =
+        supportFragmentManager.findFragmentById(R.id.fragmentContainer)?.childFragmentManager?.primaryNavigationFragment
+
+    fun currentFragmentId(): Int? = navController.currentDestination?.id
 }

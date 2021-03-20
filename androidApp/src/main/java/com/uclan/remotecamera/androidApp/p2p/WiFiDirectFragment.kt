@@ -2,23 +2,22 @@ package com.uclan.remotecamera.androidApp.p2p
 
 import android.app.ProgressDialog
 import android.net.wifi.WpsInfo
-import android.net.wifi.p2p.WifiP2pConfig
-import android.net.wifi.p2p.WifiP2pDevice
-import android.net.wifi.p2p.WifiP2pDeviceList
-import android.net.wifi.p2p.WifiP2pManager
+import android.net.wifi.p2p.*
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.uclan.remotecamera.androidApp.MainActivity
 import com.uclan.remotecamera.androidApp.databinding.FragmentWifiBinding
 import com.uclan.remotecamera.androidApp.utility.OnRecyclerViewItemClick
 import java.util.*
 
-class WiFiDirectFragment : Fragment(), WifiP2pManager.PeerListListener {
+class WiFiDirectFragment : Fragment(), WifiP2pManager.PeerListListener,
+    WifiP2pManager.ConnectionInfoListener {
 
     private lateinit var listAdapter: WiFiDirectListAdapter
     private lateinit var progressDialog: ProgressDialog
@@ -33,8 +32,6 @@ class WiFiDirectFragment : Fragment(), WifiP2pManager.PeerListListener {
     class PeerDiscoveryTask(private val activity: MainActivity?) : TimerTask() {
         override fun run() {
             if (activity == null) return
-            if (activity.supportFragmentManager.findFragmentByTag("WiFiDirectFragment") == null) return
-            if (!activity.supportFragmentManager.findFragmentByTag("WiFiDirectFragment")?.isVisible!!) return
             activity.runOnUiThread {
                 activity.discoverPeers()
             }
@@ -52,20 +49,19 @@ class WiFiDirectFragment : Fragment(), WifiP2pManager.PeerListListener {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        taskTimer.cancel()
         _binding = null
     }
 
     override fun onPause() {
         super.onPause()
-        Log.e("pause", "pause")
         taskTimer.cancel()
         if (this@WiFiDirectFragment::progressDialog.isInitialized && progressDialog.isShowing)
             progressDialog.dismiss()
     }
 
-    override fun onResume() {
-        super.onResume()
-        Log.e("resume", "resume")
+    override fun onStart() {
+        super.onStart()
         taskTimer = PeerDiscoveryTask(activity as MainActivity)
         Timer().scheduleAtFixedRate(taskTimer, 1000, 6000)
     }
@@ -129,5 +125,9 @@ class WiFiDirectFragment : Fragment(), WifiP2pManager.PeerListListener {
                 listAdapter.updateAll(peers.deviceList.toList())
             else
                 Log.d("WiFiDirectActivity", "No devices scanned")
+    }
+
+    override fun onConnectionInfoAvailable(info: WifiP2pInfo?) {
+        findNavController().navigate(WiFiDirectFragmentDirections.toSettingsFragment(info!!))
     }
 }
