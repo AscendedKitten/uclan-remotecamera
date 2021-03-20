@@ -15,3 +15,4 @@ iosApp
 local.properties
 .idea
 build/
+java_pid*
