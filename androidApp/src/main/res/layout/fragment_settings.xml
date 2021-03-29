@@ -26,7 +26,6 @@
         android:layout_centerHorizontal="true"
         android:textSize="20sp" />
 
-
     <Button
         android:id="@+id/btn_confirm"
         android:layout_width="wrap_content"

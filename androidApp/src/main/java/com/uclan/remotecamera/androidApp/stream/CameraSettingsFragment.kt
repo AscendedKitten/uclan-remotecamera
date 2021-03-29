@@ -14,6 +14,11 @@ import androidx.navigation.fragment.findNavController
 import com.uclan.remotecamera.androidApp.R
 import com.uclan.remotecamera.androidApp.databinding.FragmentSettingsBinding
 import com.uclan.remotecamera.androidApp.p2p.P2PConnectionActions
+import com.uclan.remotecamera.androidApp.utility.SimpleBroadcastServer
+import com.uclan.remotecamera.androidApp.utility.Utility
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class CameraSettingsFragment : Fragment() {
 
@@ -33,11 +38,6 @@ class CameraSettingsFragment : Fragment() {
     ): View {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,6 +66,7 @@ class CameraSettingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         init(CameraSettingsFragmentArgs.fromBundle(requireArguments()).wifiP2pInfo)
     }
 
@@ -88,10 +89,24 @@ class CameraSettingsFragment : Fragment() {
 
         binding.btnConfirm.text = if (info.isGroupOwner) "Start camera" else "Start receiver"
 
+        if (info.isGroupOwner) {
+            CoroutineScope(Dispatchers.IO).launch {
+                if (!Utility.isPortClosed(info.groupOwnerAddress.hostAddress, PORT)) {
+                    Log.e("CameraSettingsFragment", "Port closed; opening new connection")
+                    SimpleBroadcastServer(PORT).start()
+                } else {
+                    Log.d("CameraSettingsFragment", "Port already open; re-using")
+                }
+            }
+        }
+
         binding.btnConfirm.setOnClickListener {
             val ownerAddress = info.groupOwnerAddress.hostAddress
             if (info.isGroupOwner) {
-                Log.d("CameraSettingsFragment", "Identified group owner, starting camera fragment")
+                Log.d(
+                    "CameraSettingsFragment",
+                    "Identified group owner, starting camera fragment and server"
+                )
                 findNavController().navigate(
                     CameraSettingsFragmentDirections.toCameraFragment(
                         PORT,

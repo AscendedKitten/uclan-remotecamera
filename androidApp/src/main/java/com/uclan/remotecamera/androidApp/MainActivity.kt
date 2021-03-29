@@ -36,7 +36,9 @@ class MainActivity : AppCompatActivity(), P2PConnectionActions, WifiP2pManager.C
             arrayOf(
                 Manifest.permission.CAMERA,
                 Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.RECORD_AUDIO
+                Manifest.permission.RECORD_AUDIO,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE
             )
 
         fun hasPermissions(context: Context) = REQUIRED_PERMISSIONS.all {
@@ -96,7 +98,9 @@ class MainActivity : AppCompatActivity(), P2PConnectionActions, WifiP2pManager.C
                 arrayOf(
                     Manifest.permission.ACCESS_FINE_LOCATION,
                     Manifest.permission.CAMERA,
-                    Manifest.permission.RECORD_AUDIO
+                    Manifest.permission.RECORD_AUDIO,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE
                 ),
                 GENERIC_PERMISSIONS_CODE
             )

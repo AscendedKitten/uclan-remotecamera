@@ -1,10 +1,9 @@
-package com.uclan.remotecamera.androidApp.stream
+/*package com.uclan.remotecamera.androidApp.legacy
 
 import android.content.Context
 import android.content.Intent
 import android.util.Log
 import androidx.core.app.JobIntentService
-import com.uclan.remotecamera.androidApp.utility.SimpleAsyncClient
 import io.ktor.util.*
 import java.io.IOException
 import java.io.PrintWriter
@@ -59,4 +58,4 @@ class LocalFileTransferService : JobIntentService() {
             }
         }
     }
-}
+}*/

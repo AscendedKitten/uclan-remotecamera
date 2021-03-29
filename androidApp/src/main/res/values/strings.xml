@@ -7,4 +7,6 @@
     <string name="groupIp">&lt;b>Group Owner IP:&lt;/b> %s</string>
     <string name="capture_image">Capture image</string>
     <string name="app_name">Remote Camera</string>
+    <string name="wait_for_rtsp">Waiting for transmitter</string>
+    <string name="wait_for_peers">Run this app on a peer device to discover connections!</string>
 </resources>

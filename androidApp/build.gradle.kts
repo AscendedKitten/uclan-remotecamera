@@ -29,18 +29,14 @@ dependencies {
     implementation("com.github.pedroSG94.vlc-example-streamplayer:pedrovlc:2.5.14v3")
     implementation("com.github.pedroSG94.rtmp-rtsp-stream-client-java:rtplibrary:1.9.9")
 
-    implementation("io.ktor:ktor-websockets:1.5.2")
-    implementation("io.ktor:ktor-server-netty:1.5.2")
-
-    implementation("io.ktor:ktor-client-websockets:1.5.2")
     implementation("io.ktor:ktor-client-cio:1.5.2")
-
-    implementation("io.ktor:ktor-server-core:1.5.2")
-    implementation("io.ktor:ktor-server-sessions:1.5.2")
-
     implementation("ch.qos.logback:logback-classic:1.2.3")
     implementation("androidx.multidex:multidex:2.0.1")
 
+    implementation("io.ktor:ktor-websockets:1.5.2")
+    implementation("io.ktor:ktor-server-netty:1.5.2")
+
+    implementation("com.google.guava:guava:30.1.1-android")
 }
 
 android {

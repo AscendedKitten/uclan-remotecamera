@@ -128,6 +128,7 @@ class WiFiDirectFragment : Fragment(), WifiP2pManager.PeerListListener,
     }
 
     override fun onConnectionInfoAvailable(info: WifiP2pInfo?) {
+        Log.d("WiFiDirectFragment", "Redirecting to Settings")
         findNavController().navigate(WiFiDirectFragmentDirections.toSettingsFragment(info!!))
     }
 }

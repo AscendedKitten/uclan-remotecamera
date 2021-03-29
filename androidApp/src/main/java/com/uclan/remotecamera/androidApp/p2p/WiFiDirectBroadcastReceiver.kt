@@ -54,7 +54,8 @@ class WiFiDirectBroadcastReceiver(
 
                 if (networkInfo!!.isConnected) {
                     Log.d("Broadcaster", "Attempt info request")
-                    manager.requestConnectionInfo(channel, getFragment() as WiFiDirectFragment)
+                    if (isInFragment(R.id.wiFiDirectFragment))
+                        manager.requestConnectionInfo(channel, getFragment() as WiFiDirectFragment)
 
                 } else {
                     if (!isInFragment(R.id.wiFiDirectFragment)) {
